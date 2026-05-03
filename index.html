@@ -3,218 +3,530 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach Stormer - AI-Powered Event Storming Facilitation</title>
+    <title>Coach Stormer - AI-Powered Collaborative Modeling</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7f8fa;
+            --bg-elevated: #eef1ff;
+            --border: rgba(11, 21, 48, 0.08);
+            --text-primary: #0b1530;
+            --text-secondary: #4a5068;
+            --text-tertiary: #8890a5;
+            --accent: #3457ff;
+            --accent-hover: #2a46d4;
+            --green: #2da44e;
+            --yellow: #ff9a3d;
+            --purple: #3457ff;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #1a1a2e;
-            background: #f8f9fa;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
         }
+
         .container {
-            max-width: 800px;
+            max-width: 860px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Header */
+        /* Hero */
         header {
-            padding: 3rem 0 2rem;
+            padding: 6rem 0 4rem;
             text-align: center;
-        }
-        .logo {
-            max-width: 360px;
-            width: 100%;
-            margin-bottom: 1.5rem;
-        }
-        .tagline {
-            font-size: 1.25rem;
-            color: #555;
-            max-width: 600px;
-            margin: 0 auto;
+            position: relative;
         }
 
-        /* Description */
-        .description {
-            padding: 2rem 0;
-            border-bottom: 1px solid #e2e8f0;
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, rgba(52, 87, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .description h2 {
+
+        .logo {
+            max-width: 320px;
+            width: 100%;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+            letter-spacing: -0.01em;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.65rem 1.4rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: var(--bg-elevated);
+        }
+
+        /* Section */
+        section {
+            padding: 3rem 0;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        section h2 {
             font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
             margin-bottom: 1rem;
-            color: #1a1a2e;
+            letter-spacing: -0.02em;
         }
-        .description p {
-            font-size: 1.05rem;
-            color: #444;
-            margin-bottom: 1rem;
+
+        section p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+            text-align: justify;
         }
+
         .features {
             list-style: none;
             padding: 0;
-        }
-        .features li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #444;
-        }
-        .features li::before {
-            content: "\25A0";
-            position: absolute;
-            left: 0;
-            color: #3457ff;
+            margin-top: 1.5rem;
+            display: grid;
+            gap: 0.5rem;
         }
 
-        /* Changelog */
-        .changelog {
-            padding: 2rem 0 4rem;
+        .features li {
+            padding: 0.6rem 0.9rem;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
         }
-        .changelog h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #1a1a2e;
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: var(--border);
         }
-        .changelog-entry {
-            margin-bottom: 2rem;
+
+        /* Roadmap */
+        .roadmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
         }
-        .changelog-entry h3 {
-            font-size: 1.1rem;
-            color: #3457ff;
-            margin-bottom: 0.5rem;
+
+        .roadmap-table th,
+        .roadmap-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
         }
-        .changelog-entry ul {
-            list-style: none;
-            padding: 0;
-        }
-        .changelog-entry ul li {
-            padding: 0.3rem 0 0.3rem 1.5rem;
-            position: relative;
-            color: #555;
-        }
-        .changelog-entry ul li::before {
-            content: "\2022";
-            position: absolute;
-            left: 0.4rem;
-            color: #3457ff;
-        }
-        .badge {
-            display: inline-block;
+
+        .roadmap-table th {
             font-size: 0.7rem;
-            font-weight: 600;
+            font-weight: 500;
             text-transform: uppercase;
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            margin-left: 0.5rem;
-            vertical-align: middle;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
         }
-        .badge-new {
-            background: #dcfce7;
-            color: #166534;
+
+        .roadmap-table td {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
-        .badge-wip {
-            background: #fef3c7;
-            color: #92400e;
+
+        .roadmap-table td:last-child {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .roadmap-table tbody tr {
+            transition: background 0.1s ease;
+        }
+
+        .roadmap-table tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 100px;
+        }
+
+        .status-done {
+            color: var(--green);
+            background: rgba(45, 164, 78, 0.08);
+        }
+
+        .status-wip {
+            color: #cc7a00;
+            background: rgba(255, 154, 61, 0.12);
+        }
+
+        .status-planned {
+            color: var(--accent);
+            background: rgba(52, 87, 255, 0.08);
+        }
+
+        /* Milestones - Vertical Timeline */
+        .milestones {
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline-track,
+        .timeline-fill {
+            position: absolute;
+            left: 5px;
+            width: 2px;
+        }
+
+        .timeline-track {
+            background: var(--bg-elevated);
+        }
+
+        .timeline-fill {
+            background: linear-gradient(0deg, var(--accent), #ff9a3d);
+            border-radius: 100px;
+            transform-origin: bottom;
+            transform: scaleY(0);
+            animation: fillBarVertical 1.5s ease-out 0.3s forwards;
+        }
+
+        @keyframes fillBarVertical {
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        .milestone {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .milestone:last-child {
+            padding-bottom: 0;
+        }
+
+        .milestone-dot {
+            position: absolute;
+            left: -2.5rem;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            z-index: 1;
+        }
+
+        .milestone.reached .milestone-dot {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(52, 87, 255, 0.12);
+        }
+
+        .milestone.current .milestone-dot {
+            background: #ff9a3d;
+            border-color: #ff9a3d;
+            box-shadow: 0 0 0 4px rgba(255, 154, 61, 0.12);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 4px rgba(255, 154, 61, 0.12);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(255, 154, 61, 0.06);
+            }
+        }
+
+        .milestone-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .milestone-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+        }
+
+        .milestone.reached .milestone-label,
+        .milestone.current .milestone-label {
+            color: var(--text-primary);
+        }
+
+        .milestone-date {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .milestone-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            line-height: 1.5;
+        }
+
+        .milestone:not(.reached):not(.current) .milestone-desc {
+            color: var(--text-tertiary);
         }
 
         /* Footer */
         footer {
-            padding: 2rem 0;
-            border-top: 1px solid #e2e8f0;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
             text-align: center;
-            color: #888;
-            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
         }
 
         @media (max-width: 600px) {
-            .logo { max-width: 260px; }
-            .tagline { font-size: 1.1rem; }
+            header {
+                padding: 4rem 0 3rem;
+            }
+
+            .logo {
+                max-width: 240px;
+            }
+
+            .tagline {
+                font-size: 1.05rem;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="assets/logo.svg" alt="Coach Stormer" class="logo">
-            <p class="tagline">AI-powered facilitation for collaborative modeling sessions as a Miro plugin.</p>
-        </header>
+<div class="container">
+    <header>
+        <img src="assets/logo.svg" alt="Coach Stormer" class="logo">
+        <p class="tagline">AI-powered facilitation for collaborative modeling sessions as a Miro plugin.</p>
+        <div class="cta-group">
+            <a href="#" class="btn btn-primary">Watch Demo</a>
+            <a href="mailto:mike@coachstormer.com" class="btn btn-secondary">Give Feedback</a>
+            <a href="https://coachstormer.substack.com/subscribe" class="btn btn-secondary" target="_blank">Subscribe
+                for Updates</a>
+        </div>
+    </header>
 
-        <section class="description">
-            <h2>What is Coach Stormer?</h2>
-            <p>
-                Coach Stormer is a Miro plugin that brings AI-powered personas into your collaborative modeling workshops.
-                It acts as a virtual facilitator, guiding teams through modeling sessions with intelligent,
-                adaptive behavior.
-            </p>
-            <p>
-                Currently supported: <strong>Big Picture Event Storming</strong> facilitation. More modeling techniques coming soon.
-            </p>
-            <ul class="features">
-                <li>AI personas with distinct behavioral styles (collaborative, dominant, passive, skeptical)</li>
-                <li>Graph-based storyline built from Miro sticky notes and connectors</li>
-                <li>Automated phase management for modeling sessions</li>
-                <li>Human-in-the-loop interaction with AI tool calls</li>
-                <li>Multiple business domain support (VeloCity, Crowd Sorcery)</li>
-                <li>Scoring rules for evaluating session quality</li>
-            </ul>
-        </section>
+    <div class="divider"></div>
 
-        <section class="changelog">
-            <h2>Changelog</h2>
+    <section>
+        <p class="section-label">About</p>
+        <h2>What is Coach Stormer?</h2>
+        <p>
+            Coach Stormer is a tool for learning facilitation of collaborative modeling techniques. It simulates the
+            most realistic experience of facilitation sessions,
+            including human interactions, group dynamics, and mood.
+        </p>
+        <p>
+            Virtual participants with unique personalities (collaborative, challenging, skeptical)
+            are present during your facilitation session, reacting and contributing just like real workshop attendees.
+            You practice guiding the session, handling different perspectives, and keeping the group on track.
+        </p>
+        <p>
+            Works with your existing Miro boards with no setup overhead.
+            You stay in control and review every AI suggestion before it's applied.
+        </p>
+        <p>
+            Currently supporting <strong>Big Picture Event Storming</strong>. More modeling techniques coming soon.
+        </p>
+    </section>
 
-            <div class="changelog-entry">
-                <h3>May 2026 <span class="badge badge-wip">In Progress</span></h3>
-                <ul>
-                    <li>Adaptive behavior toggle for AI personas</li>
-                    <li>Improved agent behavior and bug fixes</li>
-                    <li>Correct display of tool calls in Human-in-the-Loop mode</li>
-                    <li>Graph and prompt improvements</li>
-                    <li>Better UX on Chaotic Exploration screen</li>
-                    <li>LLM model configurable via environment property</li>
-                    <li>New VeloCity domain personas and prompts</li>
-                </ul>
+    <div class="divider"></div>
+
+    <section>
+        <p class="section-label">Milestones</p>
+        <h2>Road Map</h2>
+
+        <div class="milestones" id="milestones">
+            <div class="timeline-track" id="timeline-track"></div>
+            <div class="timeline-fill" id="timeline-fill"></div>
+            <div class="milestone">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">Multi-Technique Support</span>
+                </div>
+                <p class="milestone-desc">Expand beyond Event Storming to other collaborative modeling techniques.</p>
             </div>
-
-            <div class="changelog-entry">
-                <h3>April 2026</h3>
-                <ul>
-                    <li>Runtime Session screen implementation</li>
-                    <li>Session configuration form</li>
-                    <li>Backend E2E verification</li>
-                    <li>Scoring rules for Big Picture Event Storming</li>
-                    <li>Graph unification across event storming phases</li>
-                </ul>
+            <div class="milestone">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">Miro Marketplace Release</span>
+                </div>
+                <p class="milestone-desc">Public release of the plugin available to all Miro users.</p>
             </div>
-
-            <div class="changelog-entry">
-                <h3>January 2026</h3>
-                <ul>
-                    <li>Stopping and switching phases of event storming sessions</li>
-                    <li>Session configuration context</li>
-                </ul>
+            <div class="milestone current">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">Session Scoring</span>
+                </div>
+                <p class="milestone-desc">Evaluate facilitation quality and session outcomes with automated scoring and
+                    feedback.</p>
             </div>
-
-            <div class="changelog-entry">
-                <h3>November - December 2025</h3>
-                <ul>
-                    <li>Personas can suggest proposals to the storyline</li>
-                    <li>Graph-based storyline from Miro sticky notes and connectors</li>
-                    <li>Chaotic exploration context as LangGraph nodes</li>
-                    <li>Docker containerization (backend + frontend)</li>
-                    <li>Initial project setup</li>
-                </ul>
+            <div class="milestone current">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">Voice Commands</span>
+                </div>
+                <p class="milestone-desc">Control and guide sessions using voice, making facilitation feel natural and
+                    hands-free.</p>
             </div>
-        </section>
+            <div class="milestone reached">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">Participants Adaptive Behavior</span>
+                </div>
+                <p class="milestone-desc">Virtual participants adapt their behavior in real-time based on session
+                    dynamics and facilitator actions.</p>
+            </div>
+            <div class="milestone reached">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">Live Session Experience</span>
+                </div>
+                <p class="milestone-desc">Users can configure and run full Event Storming sessions with AI-powered
+                    facilitation.</p>
+            </div>
+            <div class="milestone reached">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">AI-Driven Modeling</span>
+                </div>
+                <p class="milestone-desc">AI personas actively participate in modeling sessions and propose storyline
+                    changes.</p>
+            </div>
+            <div class="milestone reached">
+                <div class="milestone-dot"></div>
+                <div class="milestone-header">
+                    <span class="milestone-label">Proof of Concept</span>
+                </div>
+                <p class="milestone-desc">First working prototype connecting AI agents with Miro boards for
+                    collaborative modeling.</p>
+            </div>
+        </div>
 
-        <footer>
-            <p>&copy; 2026 Coach Stormer. Built with Miro SDK, NestJS, React, and LangGraph.</p>
-        </footer>
-    </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Coach Stormer Team</p>
+        <p style="margin-top: 0.75rem;">Have questions? Reach us on LinkedIn</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 0.5rem;">
+            <a href="https://www.linkedin.com/in/michalwojtyna/" target="_blank"
+               style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; line-height: 1;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                Michał Wojtyna</a>
+            <a href="https://www.linkedin.com/in/kamil-bonkowski" target="_blank"
+               style="display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; line-height: 1;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                Kamil Bońkowski</a>
+        </div>
+    </footer>
+</div>
+<script>
+    (function () {
+        var container = document.getElementById('milestones');
+        var dots = container.querySelectorAll('.milestone-dot');
+        var track = document.getElementById('timeline-track');
+        var fill = document.getElementById('timeline-fill');
+
+        var firstDot = dots[dots.length - 1];
+        var lastDot = dots[0];
+        var currentDot = container.querySelector('.milestone.current .milestone-dot');
+
+        var containerRect = container.getBoundingClientRect();
+        var firstCenter = firstDot.getBoundingClientRect().top + 6 - containerRect.top;
+        var lastCenter = lastDot.getBoundingClientRect().top + 6 - containerRect.top;
+        var currentCenter = currentDot
+            ? currentDot.getBoundingClientRect().top + 6 - containerRect.top
+            : firstCenter;
+
+        track.style.top = lastCenter + 'px';
+        track.style.height = (firstCenter - lastCenter) + 'px';
+
+        fill.style.bottom = (containerRect.height - firstCenter) + 'px';
+        fill.style.height = (firstCenter - currentCenter) + 'px';
+    })();
+</script>
 </body>
 </html>
