@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach Stormer</title>
+    <title>Coach Stormer - AI-Powered Event Storming Facilitation</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <style>
         * {
             margin: 0;
@@ -13,49 +14,204 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1a1a2e;
             background: #f8f9fa;
         }
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 3rem 0 2rem;
             text-align: center;
-            padding: 2rem;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
+        .logo {
+            max-width: 360px;
+            width: 100%;
+            margin-bottom: 1.5rem;
         }
-        p {
+        .tagline {
             font-size: 1.25rem;
             color: #555;
             max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Description */
+        .description {
+            padding: 2rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .description h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        .description p {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+        .features {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #444;
+        }
+        .features li::before {
+            content: "\25A0";
+            position: absolute;
+            left: 0;
+            color: #3457ff;
+        }
+
+        /* Changelog */
+        .changelog {
+            padding: 2rem 0 4rem;
+        }
+        .changelog h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+        .changelog-entry {
             margin-bottom: 2rem;
         }
-        .cta {
-            display: inline-block;
-            padding: 0.75rem 2rem;
-            background: #4361ee;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
+        .changelog-entry h3 {
             font-size: 1.1rem;
-            transition: background 0.2s;
+            color: #3457ff;
+            margin-bottom: 0.5rem;
         }
-        .cta:hover {
-            background: #3a56d4;
+        .changelog-entry ul {
+            list-style: none;
+            padding: 0;
+        }
+        .changelog-entry ul li {
+            padding: 0.3rem 0 0.3rem 1.5rem;
+            position: relative;
+            color: #555;
+        }
+        .changelog-entry ul li::before {
+            content: "\2022";
+            position: absolute;
+            left: 0.4rem;
+            color: #3457ff;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        .badge-new {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .badge-wip {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .logo { max-width: 260px; }
+            .tagline { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <h1>Coach Stormer</h1>
-        <p>Your AI-powered coaching companion. Coming soon.</p>
-        <a href="#" class="cta">Get Started</a>
-    </section>
+    <div class="container">
+        <header>
+            <img src="assets/logo.svg" alt="Coach Stormer" class="logo">
+            <p class="tagline">AI-powered facilitation for Big Picture Event Storming sessions as a Miro plugin.</p>
+        </header>
+
+        <section class="description">
+            <h2>What is Coach Stormer?</h2>
+            <p>
+                Coach Stormer is a Miro plugin that brings AI-powered personas into your Big Picture Event Storming workshops.
+                It acts as a virtual facilitator, guiding teams through collaborative modeling sessions with intelligent,
+                adaptive behavior.
+            </p>
+            <ul class="features">
+                <li>AI personas with distinct behavioral styles (collaborative, dominant, passive, skeptical)</li>
+                <li>Graph-based storyline built from Miro sticky notes and connectors</li>
+                <li>Automated phase management for Event Storming sessions</li>
+                <li>Human-in-the-loop interaction with AI tool calls</li>
+                <li>Multiple business domain support (VeloCity, Crowd Sorcery)</li>
+                <li>Scoring rules for evaluating Event Storming quality</li>
+            </ul>
+        </section>
+
+        <section class="changelog">
+            <h2>Changelog</h2>
+
+            <div class="changelog-entry">
+                <h3>May 2026 <span class="badge badge-wip">In Progress</span></h3>
+                <ul>
+                    <li>Adaptive behavior toggle for AI personas</li>
+                    <li>Improved agent behavior and bug fixes</li>
+                    <li>Correct display of tool calls in Human-in-the-Loop mode</li>
+                    <li>Graph and prompt improvements</li>
+                    <li>Better UX on Chaotic Exploration screen</li>
+                    <li>LLM model configurable via environment property</li>
+                    <li>New VeloCity domain personas and prompts</li>
+                </ul>
+            </div>
+
+            <div class="changelog-entry">
+                <h3>April 2026</h3>
+                <ul>
+                    <li>Runtime Session screen implementation</li>
+                    <li>Session configuration form</li>
+                    <li>Backend E2E verification</li>
+                    <li>Scoring rules for Big Picture Event Storming</li>
+                    <li>Graph unification across event storming phases</li>
+                </ul>
+            </div>
+
+            <div class="changelog-entry">
+                <h3>January 2026</h3>
+                <ul>
+                    <li>Stopping and switching phases of event storming sessions</li>
+                    <li>Session configuration context</li>
+                </ul>
+            </div>
+
+            <div class="changelog-entry">
+                <h3>November - December 2025</h3>
+                <ul>
+                    <li>Personas can suggest proposals to the storyline</li>
+                    <li>Graph-based storyline from Miro sticky notes and connectors</li>
+                    <li>Chaotic exploration context as LangGraph nodes</li>
+                    <li>Docker containerization (backend + frontend)</li>
+                    <li>Initial project setup</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Coach Stormer. Built with Miro SDK, NestJS, React, and LangGraph.</p>
+        </footer>
+    </div>
 </body>
 </html>
